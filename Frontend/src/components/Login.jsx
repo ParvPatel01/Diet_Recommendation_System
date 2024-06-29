@@ -14,6 +14,7 @@ import {
 
 const Login = () => {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,13 +26,37 @@ const Login = () => {
     navigate(path, { replace: true });
   };
 
-  const handleLogin = (e) => {
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   if (username === "admin" && password === "admin") {
+  //     // Perform login actions (e.g., redirect, store token, etc.)
+  //     setIsLoggedIn(true);
+  //   } else {
+  //     setError("Invalid username or password");
+  //   }
+  // };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (username === "admin" && password === "admin") {
-      // Perform login actions (e.g., redirect, store token, etc.)
+    try {
+      const response = await fetch("http://localhost:3000/api/v1/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await response.json()
+      console.log(data)
+      console.log(response.data)
+      if (!data.success) {
+        throw new Error("Invalid username or password");
+      }
+      console.log(response)
       setIsLoggedIn(true);
-    } else {
-      setError("Invalid username or password");
+      routeChangeToHomePage();
+    } catch (error) {
+      setError(error.message);
     }
   };
 
@@ -40,21 +65,32 @@ const Login = () => {
     setError(""); // Clear any existing error message when toggling forms
   };
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     // Perform signup actions (e.g., send data to backend)
     setIsLoggedIn(true); // For demonstration, consider signup successful
-    console.log("Signup data:", {
-      username,
-      password,
-      age,
-      gender,
-      weight,
-      height,
-      dietaryPreferences,
-      allergies,
-      healthGoals,
-    });
+    try {
+      const response = await fetch("http://localhost:3000/api/v1/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password, email, profile: {
+          age,gender,weight,height,dietaryPreferences,allergies,healthGoals
+        } }),
+      });
+      const data = await response.json()
+      console.log(data)
+      console.log(response.data)
+      if (!data.success) {
+        throw new Error("Invalid username or password");
+      }
+      console.log(response)
+      setIsLoggedIn(true);
+      routeChangeToHomePage();
+    } catch (error) {
+      setError(error.message);
+    }
     routeChangeToHomePage();
   };
 
@@ -164,6 +200,15 @@ const Login = () => {
             variant="outlined"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            fullWidth
+            margin="normal"
+            required
+          />
+          <TextField
+            label="email"
+            variant="outlined"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             fullWidth
             margin="normal"
             required

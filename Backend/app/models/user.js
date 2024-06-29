@@ -46,10 +46,10 @@ const userSchema = new Schema({
             min: 0
         },
         dietaryPreferences: {
-            type: [String]
+            type: String
         },
         allergies: {
-            type: [String]
+            type: String
         },
         healthGoals: {
             type: String
