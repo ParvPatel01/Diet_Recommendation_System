@@ -3,12 +3,12 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
-
 import DietCalculator from "./pages/DietCalculator";
 import BMICalculator from "./pages/BMICalculator";
 import PersonalizedDiet from "./pages/PersonalizedDiet";
 import Login from "./components/Login";
 import ErrorPage from "./pages/ErrorPage";
+import HealthForm from "./pages/HealthForm";
 
 const App = () => {
   return (
@@ -21,6 +21,7 @@ const App = () => {
         <Route path="/personalized-diet" element={<PersonalizedDiet />} />
         <Route path="/" element={<Login />} />
         <Route path="*" element={<ErrorPage />} />
+        <Route path="/health-form" element={<HealthForm />} />
       </Routes>
     </Router>
   );
