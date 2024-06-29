@@ -50,15 +50,15 @@ def home():
 def update_item(prediction_input:PredictionIn):
     recommendation_dataframe=recommend(dataset,prediction_input.nutrition_input,prediction_input.ingredients,prediction_input.params.dict())
     output=output_recommended_recipes(recommendation_dataframe)
+    json_object = json.dumps(output, indent=4)
+    with open("data.json", "w") as outfile:
+        outfile.write(json_object)
     
     if output is None:
         return {"output":None}
     else:
-        json_object = json.dumps(output, indent=4)
-        with open("data.json", "w") as outfile:
-            outfile.write(json_object)
         return {"output":output}
     
 
 
-# print(update_item(PredictionIn(nutrition_input=[1000.00]*9,ingredients=['chicken','rice'],params=params(n_neighbors=5,return_distance=False))))
+print(update_item(PredictionIn(nutrition_input=[1000.00]*9,ingredients=['roti','rice'],params=params(n_neighbors=5,return_distance=False))))
