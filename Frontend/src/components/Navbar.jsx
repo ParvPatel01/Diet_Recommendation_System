@@ -12,7 +12,8 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import logo from "../assets/Logo.png";
+import { Link } from "react-router-dom";
 
 const pages = ["BMI Calculator", "Diet Calculator", "Personalized Diet"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -44,88 +45,61 @@ const Navbar = () => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
+          <Box
             sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "#597445",
-              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              flex: "1", // Ensures flex-grow to push elements apart
             }}
           >
-            NutriGenius
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="open menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="#597445"
+              sx={{ display: { xs: "block", md: "none" }, color: "#597445" }}
             >
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
+
+            <img
+              src={logo}
+              alt="Logo"
+              style={{
+                height: 40,
+                marginRight: 10,
                 display: { xs: "block", md: "none" },
               }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" color="#729762">
-                    {page}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          {/* {<AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />} */}
-          {
+            />
+
             <Typography
-              variant="h5"
+              variant="h6"
               noWrap
-              component="a"
-              href="/"
+              component={Link}
+              to="/home"
               sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
+                display: { xs: "none", md: "block" }, // Show on medium and larger screens
                 color: "#597445",
                 textDecoration: "none",
               }}
             >
               NutriGenius
             </Typography>
-          }
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          </Box>
+
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              flexGrow: 1,
+              justifyContent: "right",
+            }}
+          >
             {pages.map((page) => (
               <Button
                 key={page}
+                component={Link}
+                to={`/${page.replace(/\s+/g, "-").toLowerCase()}`}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "#597445", display: "block" }}
               >
