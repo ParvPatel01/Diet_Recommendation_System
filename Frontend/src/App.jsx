@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
+
 import DietCalculator from "./pages/DietCalculator";
 import BMICalculator from "./pages/BMICalculator";
 import PersonalizedDiet from "./pages/PersonalizedDiet";
