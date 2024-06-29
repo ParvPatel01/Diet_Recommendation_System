@@ -1,6 +1,7 @@
 // src/pages/HomePage.jsx
 import React from "react";
 import Navbar from "../components/Navbar";
+import BMIInputCard from "../components/BMIInputCard";
 
 const HomePage = () => {
   return (
