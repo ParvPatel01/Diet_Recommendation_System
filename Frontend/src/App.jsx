@@ -12,49 +12,13 @@ import ErrorPage from "./pages/ErrorPage";
 const App = () => {
   return (
     <Router>
+      <Navbar />
       <Routes>
-        {/* Route without Navbar */}
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/bmi-calculator" element={<BMICalculator />} />
+        <Route path="/diet-calculator" element={<DietCalculator />} />
+        <Route path="/personalized-diet" element={<PersonalizedDiet />} />
         <Route path="/" element={<Login />} />
-
-        {/* Routes with Navbar */}
-        <Route
-          path="/home/*"
-          element={
-            <>
-              <Navbar />
-              <HomePage />
-            </>
-          }
-        />
-        <Route
-          path="/bmi-calculator/*"
-          element={
-            <>
-              <Navbar />
-              <BMICalculator />
-            </>
-          }
-        />
-        <Route
-          path="/diet-calculator/*"
-          element={
-            <>
-              <Navbar />
-              <DietCalculator />
-            </>
-          }
-        />
-        <Route
-          path="/personalized-diet/*"
-          element={
-            <>
-              <Navbar />
-              <PersonalizedDiet />
-            </>
-          }
-        />
-
-        {/* Error route */}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
