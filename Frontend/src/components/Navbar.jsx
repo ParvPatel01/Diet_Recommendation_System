@@ -16,7 +16,7 @@ import logo from "../assets/Logo.png";
 import { Link } from "react-router-dom";
 
 const pages = ["BMI Calculator", "Diet Calculator", "Personalized Diet"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Account", "Details", "Logout"];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
