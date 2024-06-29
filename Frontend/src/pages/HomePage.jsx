@@ -2,7 +2,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import homeImage from "../assets/homeImage.jpg";
-import Login from "../components/Login";
 
 const containerStyle = {
   display: "flex",
@@ -38,6 +37,12 @@ const buttonStyle = {
   cursor: "pointer",
   fontSize: "2rem",
 };
+const paragraphStyle = {
+  fontFamily: "Dancing Script, cursive",
+  fontOpticalSizing: " auto",
+  fontWeight: "weight",
+  fontStyle: "normal",
+};
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -51,7 +56,9 @@ const HomePage = () => {
       <div style={containerStyle}>
         <div style={mainContentWrapper}>
           <h1>GET FIT WITH NutriGenius</h1>
-          <p>Calculate your BMI and get personalized diet plans and recipes</p>
+          <p style={paragraphStyle}>
+            Calculate your BMI and get personalized diet plans and recipes
+          </p>
           <button style={buttonStyle} onClick={handleGetStarted}>
             Get Started
           </button>
