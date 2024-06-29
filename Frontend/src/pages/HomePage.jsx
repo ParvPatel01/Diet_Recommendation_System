@@ -1,7 +1,8 @@
 // src/pages/HomePage.jsx
 import React from "react";
-import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 import homeImage from "../assets/homeImage.jpg";
+import Login from "../components/Login";
 
 const containerStyle = {
   display: "flex",
@@ -27,25 +28,33 @@ const imageStyle = {
   height: "auto",
   flex: "1 1 300px", // Allow flex-grow and flex-shrink with a min-width
 };
+
 const buttonStyle = {
   backgroundColor: "#365E32",
   color: "white",
   border: "none",
-  borderRadius: " 50px",
+  borderRadius: "50px",
   padding: "10px 20px",
   cursor: "pointer",
   fontSize: "2rem",
 };
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate("/bmi-calculator");
+  };
+
   return (
     <div>
-      <Navbar />
       <div style={containerStyle}>
         <div style={mainContentWrapper}>
           <h1>GET FIT WITH NutriGenius</h1>
-          <p>Calculate your BMI and get personalized diet plans and recipes </p>
-          <button style={buttonStyle}>Get Started</button>
+          <p>Calculate your BMI and get personalized diet plans and recipes</p>
+          <button style={buttonStyle} onClick={handleGetStarted}>
+            Get Started
+          </button>
         </div>
         <img src={homeImage} alt="Home" style={imageStyle} />
       </div>
